@@ -1,0 +1,19 @@
+td, th {
+    font-size: large;
+    border: solid;
+    color: black
+}
+
+/*добавляем класс active_page */
+.active_page {
+    color: rgba(255, 99, 71, 0.99);
+}
+
+/*добавляем класс button_page */
+.button_page {
+    color: white;
+    border: 2px solid black;
+    margin: 5px;
+    padding: 20px;
+    font-size: large;
+}
