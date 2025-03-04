@@ -1,7 +1,7 @@
 td, th {
     font-size: large;
     border: solid;
-    color: black
+    color: black;
 }
 
 /*добавляем класс active_page */

@@ -1,18 +1,18 @@
-version: "3.9"
+#version: "3.9"
 
 #secrets:
 
 services:
-  server:
-    build: /
-    ports:
-      - '127.0.0.1:8080:8080'
-    depends_on:
-      db:
-        condition: service_healthy
+#  server:
+#    build: /
+#    ports:
+#      - '127.0.0.1:8080:8080'
+#    depends_on:
+#      db:
+#        condition: service_healthy
 
   db:
-    image: mysql:8.1.
+    image: mysql:8.0.32
     environment:
       MYSQL_ROOT_PASSWORD: 'root'
     ports:

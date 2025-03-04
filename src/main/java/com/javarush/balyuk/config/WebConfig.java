@@ -5,8 +5,10 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
-import org.springframework.web.servlet.config.annotation.*;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.thymeleaf.spring6.SpringTemplateEngine;
 import org.thymeleaf.spring6.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring6.view.ThymeleafViewResolver;
@@ -62,6 +64,6 @@ public class WebConfig implements WebMvcConfigurer {
         // указанная конструкция ("/html/**").addResourceLocations("/html/") делает доступными ресурсами, находящимися на любом уровне вложенности
         registry.addResourceHandler("/html/**").addResourceLocations("/html/");
         registry.addResourceHandler("/style/**").addResourceLocations("/style/");
-        registry.addResourceHandler("/script/**").addResourceLocations("/script/*");
+        registry.addResourceHandler("/script/**").addResourceLocations("/script/");
     }
 }

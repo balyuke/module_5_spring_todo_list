@@ -42,12 +42,12 @@ function getDropdownStatusHtml(task_id) {
         + "<option value='IN_PROGRESS'>IN_PROGRESS</option>>"
         + "<option value='DONE'>DONE</option>>"
         + "<option value='PAUSED'>PAUSED</option>>"
-        + "</select>>"
+        + "</select>>";
 }
 
 
 function update_task(task_id) {
-    let url = "/" + task_id;
+    let url = getBaseUrl() + task_id;
 
     let value_description = $("#input_description_" + task_id).val();
     let value_status = $("#select_status_" + task_id).val();
@@ -72,7 +72,7 @@ function add_task() {
     let value_status = $("#status_new").val();
 
     $.ajax({
-        url: "/",
+        url: getBaseUrl(),
         type: 'POST',
         datatype: 'json',
         contentType: "application/json;charset=UTF-8",
@@ -83,4 +83,10 @@ function add_task() {
     setTimeout( ()=> {
         document.location.reload();
     }, 300);
+}
+
+function getBaseUrl() {
+    let current_path = window.location.href;
+    let end_position = current_path.indexOf('?');
+    return current_path.substring(0, end_position);
 }

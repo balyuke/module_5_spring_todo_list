@@ -3,6 +3,7 @@ package com.javarush.balyuk.config;
 import com.zaxxer.hikari.HikariDataSource;
 import jakarta.persistence.EntityManagerFactory;
 import org.hibernate.cfg.Environment;
+import org.hibernate.jpa.boot.spi.EntityManagerFactoryBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
@@ -18,7 +19,7 @@ import java.util.Properties;
 public class AppConfig {
 
     @Bean
-    public LocalSessionFactoryBean sessionFactoryBean() {
+    public LocalSessionFactoryBean sessionFactory() {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
         sessionFactory.setDataSource(dataSource());
         sessionFactory.setPackagesToScan("com.javarush.balyuk.domain");
@@ -41,16 +42,19 @@ public class AppConfig {
     public DataSource dataSource() {
         HikariDataSource dataSource = new HikariDataSource();
         dataSource.setDriverClassName("com.p6spy.engine.spy.P6SpyDriver");
-        dataSource.setJdbcUrl("jdbc:p6spy:mysql://localhost:3306/todo");
-        dataSource.setUsername("user");
-        dataSource.setPassword("Qwerty135&");
+        dataSource.setJdbcUrl("jdbc:p6spy:mysql://db:3306/todo");
+        dataSource.setUsername("root");
+        dataSource.setPassword("root");
+        //dataSource.setJdbcUrl("jdbc:p6spy:mysql://localhost:3306/todo");
+        //dataSource.setUsername("user");
+        //dataSource.setPassword("Qwerty135&");
         dataSource.setMaximumPoolSize(10);
 
         return dataSource;
     }
 
     @Bean
-    public PlatformTransactionManager transactionManager(EntityManagerFactory factory){
+    public PlatformTransactionManager platformTransactionManager(EntityManagerFactory factory){
         JpaTransactionManager transactionManager = new JpaTransactionManager();
         transactionManager.setEntityManagerFactory(factory);
 
